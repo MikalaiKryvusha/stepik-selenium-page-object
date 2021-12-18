@@ -4,7 +4,6 @@ from pages.product_page import ProductPage
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
 from pages.basket_page import BasketPage
-import faker
 
 def test_guest_cant_see_success_message(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -87,8 +86,7 @@ class TestUserAddToBasketFromProductPage():
         object_login_page = LoginPage(browser, link)
         object_login_page.should_be_login_page()
 
-        object_faker = faker.Faker()
-        email = str(time.time()).replace(".", "") + object_faker.email()
+        email = str(time.time()).replace(".", "") + "@email.com"
         password = "Qq1234567890"
 
         object_login_page.register_new_user(email=email,
