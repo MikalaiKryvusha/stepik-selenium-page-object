@@ -2,6 +2,7 @@ import time
 import pytest
 from pages.product_page import ProductPage
 from pages.login_page import LoginPage
+from pages.basket_page import BasketPage
 
 
 product_base_link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
@@ -58,12 +59,14 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     object_product_page.should_not_be_success_message_because_it_disappeared()
     time.sleep(1)
 
+@pytest.mark.skip
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     object_product_page = ProductPage(browser, link)
     object_product_page.open()
     object_product_page.should_be_login_link()
 
+@pytest.mark.skip
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     object_product_page = ProductPage(browser, link)
@@ -72,3 +75,12 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     object_product_page.go_to_login_page()
     object_login_page = LoginPage(browser, link)
     object_login_page.should_be_login_page()
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    object_product_page = ProductPage(browser, link)
+    object_product_page.open()
+    object_product_page.go_to_basket_page()
+    object_basket_page = BasketPage(browser, link)
+    object_basket_page.check_that_there_is_basket_empty_text()
+    object_basket_page.check_that_basket_is_empty()
