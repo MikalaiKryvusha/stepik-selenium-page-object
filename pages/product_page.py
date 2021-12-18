@@ -16,3 +16,9 @@ class ProductPage(BasePage):
     def check_that_total_basket_price_is_displayed_in_alert(self):
         product_price = self.get_element_text(*ProductPageLocators.PRODUCT_PRICE)
         assert self.is_element_with_text_present(*ProductPageLocators.BASKET_TOTAL_BOLD_TEXT, product_price), f"Element {ProductPageLocators.BOLD_TEXT_IN_ALERTS[1]} with text '{product_price}' is not presented"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but should not be"
+
+    def should_not_be_success_message_because_it_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but should not be"
