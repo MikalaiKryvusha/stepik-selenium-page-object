@@ -12,6 +12,7 @@ def test_guest_cant_see_success_message(browser):
     object_product_page.open()
     object_product_page.should_not_be_success_message()
 
+@pytest.mark.need_review
 @pytest.mark.parametrize('link',
                          ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                           "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
@@ -55,6 +56,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     object_product_page.open()
     object_product_page.should_be_login_link()
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     object_product_page = ProductPage(browser, link)
@@ -64,6 +66,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     object_login_page = LoginPage(browser, link)
     object_login_page.should_be_login_page()
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     object_product_page = ProductPage(browser, link)
@@ -98,6 +101,7 @@ class TestUserAddToBasketFromProductPage():
         object_product_page.open()
         object_product_page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     @pytest.mark.parametrize('link',
                              ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                               "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
