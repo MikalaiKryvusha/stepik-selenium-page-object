@@ -4,14 +4,10 @@ from .locators import LoginPageLocators
 class LoginPage(BasePage):
 
     def register_new_user(self, email, password):
-        reg_email_field = self.get_element(*LoginPageLocators.REG_EMAIL_INPUT_FIELD), f"Element {LoginPageLocators.REG_EMAIL_INPUT_FIELD[1]} is not presented"
-        reg_pass1_field = self.get_element(*LoginPageLocators.REG_PASSWORD_1_INPUT_FIELD), f"Element {LoginPageLocators.REG_PASSWORD_1_INPUT_FIELD[1]} is not presented"
-        reg_pass2_field = self.get_element(*LoginPageLocators.REG_PASSWORD_2_INPUT_FIELD), f"Element {LoginPageLocators.REG_PASSWORD_2_INPUT_FIELD[1]} is not presented"
         self.send_keys_into_element(*LoginPageLocators.REG_EMAIL_INPUT_FIELD, email)
         self.send_keys_into_element(*LoginPageLocators.REG_PASSWORD_1_INPUT_FIELD, password)
         self.send_keys_into_element(*LoginPageLocators.REG_PASSWORD_2_INPUT_FIELD, password)
         self.click_element(*LoginPageLocators.REG_BUTTON)
-        pass
 
     def should_be_login_page(self):
         self.should_be_login_url()
